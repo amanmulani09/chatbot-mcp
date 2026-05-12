@@ -12,7 +12,7 @@ class AnthropicClient:
             "extract_info": extract_info
         }
         
-    def execute_tool(self,tool_name, tool_args):
+    def execute_tool(self,tool_name:str, tool_args):
     
         result = self.mapping_tool_function[tool_name](**tool_args)
 
@@ -31,7 +31,7 @@ class AnthropicClient:
             result = str(result)
         return result
     
-    def process_query(query):
+    def process_query(self,query:str):
         messages = [{'role': 'user', 'content': query}]
         
         response = self.client.messages.create(max_tokens = 2024,
@@ -63,7 +63,7 @@ class AnthropicClient:
                     tool_name = content.name
                     print(f"Calling tool {tool_name} with args {tool_args}")
                     
-                    result = execute_tool(tool_name, tool_args)
+                    result = self.execute_tool(tool_name, tool_args)
                     messages.append({"role": "user", 
                                     "content": [
                                         {

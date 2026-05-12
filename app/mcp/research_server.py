@@ -3,8 +3,15 @@ import arxiv # a open source dir to papers across domains
 import os 
 import json 
 
+from mcp.server.fastmcp import FastMCP
+
 PAPER_DIR = "papers"
 
+""" Initilise MCP Server"""
+
+mcp = FastMCP("research")
+
+@mcp.tool()
 def search_papers(topic:str, max_results: int = 5) -> List[str]:
 
     """
@@ -62,6 +69,7 @@ def search_papers(topic:str, max_results: int = 5) -> List[str]:
     print(f"results are saved in : {file_path}")
     return paper_ids
 
+@mcp.tool()
 def extract_info(paper_id:str) -> str :
     """
     Search for information about a specific paper across all directories. 
