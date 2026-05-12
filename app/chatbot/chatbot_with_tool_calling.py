@@ -1,4 +1,4 @@
-from app.tools.tools import search_papers, extract_info
+from app.chatbot.llmtools import search_papers, extract_info
 from app.client.llmtools import tools
 import anthropic
 import json
